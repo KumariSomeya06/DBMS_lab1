@@ -1,4 +1,4 @@
-create table BOOK(Book_id integer primary key,Title varchar(10),Publisher_Nmae varchar(25),Pub_Year integer);
+create table BOOK(Book_id integer primary key,Title varchar(10),Publisher_Name varchar(25),Pub_Year integer);
 insert into  BOOK values(02,'DBMS','ABCD',2020);
 insert into  BOOK values(03,'ATC','XYZ',2020);
 insert into  BOOK values(04,'ME','PQRS',2020);
