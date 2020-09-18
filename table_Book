@@ -1,8 +1,17 @@
-create table BOOK(Book_id integer primary key,Title varchar(10),Publisher_Name varchar(25),Pub_Year integer);
-insert into  BOOK values(02,'DBMS','ABCD',2020);
-insert into  BOOK values(03,'ATC','XYZ',2020);
-insert into  BOOK values(04,'ME','PQRS',2020);
-insert into  BOOK values(05,'PY','JKLM',2020);
-insert into  BOOK values(06,'GD','RSTU',2020);
-insert into  BOOK values(07,'DBMS','ABCD',2020);
-Create table BOOK_COPIES(Book_id integer,Branch_id integer,NO_OF_Copies integer, primary key(Book_id,Branch_id));
+create table PUBLISHER(Name varchar(10) primary key,Phone_no long,Address varchar(20));
+                                                                                  
+create table BOOK(Book_id integer primary key,Title varchar(10),Publisher_Name varchar(25),Pub_Year integer,foreign key(Publisher_Name) references PUBLISHER(Name));
+#insert into  BOOK values(02,'DBMS','ABCD',2020);
+#insert into  BOOK values(03,'ATC','XYZ',2020);
+#insert into  BOOK values(04,'ME','PQRS',2020);
+#insert into  BOOK values(05,'PY','JKLM',2020);
+#insert into  BOOK values(06,'GD','RSTU',2020);
+#insert into  BOOK values(07,'DBMS','ABCD',2020);
+
+create table BOOK_AUTHOR(Book_id integer,Author_name varchar(10),primary key(Book_id,Author_name),foreign key (Book_id) references BOOK(Book_id));
+                                                                                                                                        
+create table LIBRARY_BRANCH(Branch_id integer primary key,Address varchar(20),Branch_name varchar(10));
+                                                                                                  
+create table BOOK_COPIES(Book_id integer,Branch_id integer,NO_OF_Copies integer, primary key(Book_id,Branch_id),foreign key(Book_id) references BOOK(Book_id),foreign key(Branch_id) references LIBRARY_BRANCH(Branch_id));
+
+create table BOOK_LENDING(Book_id integer,Branch_id integer,Card_no integer,primary key(Book_id,Branch_id,Card_no),Date_out integer,Due_date integer,foreign key(Branch_id) references LIBRARY_BRANCH(Branch_id));
