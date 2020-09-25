@@ -1,17 +1,41 @@
-create table PUBLISHER(Name varchar(10) primary key,Phone_no long,Address varchar(20));
+create table PUBLISHER(Name varchar(10) primary key,Address varchar(20),Phone_no long);
+INSERT INTO PUBLISHER VALUES ('Mcgraw','Banglore', 9696500001);
+INSERT INTO PUBLISHER VALUES ('Pearson','Bangalore', 9595950000);
+INSERT INTO PUBLISHER VALUES ('SAM Pub','Mangalore', 9494940000);
+INSERT INTO PUBLISHER VALUES ('IOP','Mumbai', 9797970000);
+INSERT INTO PUBLISHER VALUES('IEEE','Delhi',9090900000);
                                                                                   
 create table BOOK(Book_id integer primary key,Title varchar(10),Publisher_Name varchar(25),Pub_Year integer,foreign key(Publisher_Name) references PUBLISHER(Name));
-#insert into  BOOK values(02,'DBMS','ABCD',2020);
-#insert into  BOOK values(03,'ATC','XYZ',2020);
-#insert into  BOOK values(04,'ME','PQRS',2020);
-#insert into  BOOK values(05,'PY','JKLM',2020);
-#insert into  BOOK values(06,'GD','RSTU',2020);
-#insert into  BOOK values(07,'DBMS','ABCD',2020);
+INSERT INTO BOOK VALUES (10,'DBMS','Mcgraw',2010);
+INSERT INTO BOOK VALUES (20,'SE','Pearson',2008);
+INSERT INTO BOOK VALUES (30,'FLAT','SAM Pub',2019);
+INSERT INTO BOOK VALUES (40,'BDA','IOP',2018);
+INSERT INTO BOOK VALUES (50,'MP','IEEE',2020);
 
-create table BOOK_AUTHOR(Book_id integer,Author_name varchar(10),primary key(Book_id,Author_name),foreign key (Book_id) references BOOK(Book_id));
+create table BOOK_AUTHOR(Book_id integer,Author_name varchar(20),primary key(Book_id,Author_name),foreign key (Book_id) references BOOK(Book_id));
+INSERT INTO BOOK_AUTHOR VALUES (10,'Andrew');
+INSERT INTO BOOK_AUTHOR VALUES (20,'Raj kumar');
+INSERT INTO BOOK_AUTHOR VALUES (30,'Samual');
+INSERT INTO BOOK_AUTHOR VALUES (40,'Padma');
+INSERT INTO BOOK_AUTHOR VALUES (50,'Guru');
                                                                                                                                         
 create table LIBRARY_BRANCH(Branch_id integer primary key,Address varchar(20),Branch_name varchar(10));
+INSERT INTO LIBRARY_BRANCH VALUES (100,'Main Building','Mangalore');
+INSERT INTO LIBRARY_BRANCH VALUES (200,'Ground Floor','Bangalore');
+INSERT INTO LIBRARY_BRANCH VALUES (300,'1ST Floor','BANGALORE');
+INSERT INTO LIBRARY_BRANCH VALUES (400,'Research Building','Udupi');
+INSERT INTO LIBRARY_BRANCH VALUES (500,'OPD Building','Manipal');
                                                                                                   
 create table BOOK_COPIES(Book_id integer,Branch_id integer,NO_OF_Copies integer, primary key(Book_id,Branch_id),foreign key(Book_id) references BOOK(Book_id),foreign key(Branch_id) references LIBRARY_BRANCH(Branch_id));
+INSERT INTO BOOK_COPIES VALUES (10, 100,20);
+INSERT INTO BOOK_COPIES VALUES (30, 200,30);
+INSERT INTO BOOK_COPIES VALUES (10, 300,5);
+INSERT INTO BOOK_COPIES VALUES (20, 400,15);
+INSERT INTO BOOK_COPIES VALUES (40, 500,7);
 
-create table BOOK_LENDING(Book_id integer,Branch_id integer,Card_no integer,primary key(Book_id,Branch_id,Card_no),Date_out integer,Due_date integer,foreign key(Branch_id) references LIBRARY_BRANCH(Branch_id));
+create table BOOK_LENDING(Book_id integer,Branch_id integer,Card_no integer,Date_out date,Due_date date,primary key(Book_id,Branch_id,Card_no),foreign key(Branch_id) references LIBRARY_BRANCH(Branch_id));
+INSERT INTO BOOK_LENDING VALUES ( 10, 100, 201,'2020-06-15','2020-06-25');
+INSERT INTO BOOK_LENDING VALUES ( 20, 200, 202,'2020-07-10','2020-07-20');
+INSERT INTO BOOK_LENDING VALUES (30, 300, 203,'2020-07-25','2020-07-30');
+INSERT INTO BOOK_LENDING VALUES (40, 400, 204,'2020-08-14','2020-08-26');
+INSERT INTO BOOK_LENDING VALUES (50, 500, 205,'2020-09-01','2020-09-10'); 
